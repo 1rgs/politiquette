@@ -31,7 +31,7 @@ def getRatings(name):
             cols = row.find_all('td')
             allcols.append([ele.text.strip() for ele in cols])
         temp = [int(c[2].replace("%","")) for c in allcols if c[2].replace("%","").isdigit()]
-        avg = sum(temp)/len(temp)
+        avg = sum(temp)//len(temp)
         allratings[issue]=avg
     return allratings
 
