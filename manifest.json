@@ -1,7 +1,7 @@
 
  {
   "name": "Politiquette",
-  "description": "Shamikh is a sophomore at Duke University, double majoring in Computer Science and Economics.",
+  "description": "Politiquette displays legislator’s stances on social issues and allows for direct communication indicating approval or disapproval.",
   "version": "0.1",
   "manifest_version": 2,
   "background": {
