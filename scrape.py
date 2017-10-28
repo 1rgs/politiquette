@@ -13,34 +13,34 @@ def printd(d):
     return (json.dumps(d, sort_keys=True, indent=4, separators=(',', ': ')))
 
 def getRatings(name):
-
-    ID = getID(name)
-    if not ID:
+    try:
+        ID = getID(name)
+        url = "https://votesmart.org/candidate/evaluations/"+str(ID)+"/"
+        r = requests.get(url)
+        txt = r.text.encode("utf-8")
+        soup = BeautifulSoup(txt, "lxml")
+        issuedivs = soup.findAll("div", {"class":"issues"})
+        allratings = dict()
+        for div in issuedivs:
+            issue = div.h4.text
+            rows = div.table.find_all("tr")
+            allcols = []
+            for row in rows:
+                cols = row.find_all('td')
+                allcols.append([ele.text.strip() for ele in cols])
+            temp = [int(c[2].replace("%","")) for c in allcols if c[2].replace("%","").isdigit()]
+            avg = sum(temp)//len(temp)
+            allratings[issue]=avg
+        return allratings
+    except:
         return {"not found":"true"}
-    url = "https://votesmart.org/candidate/evaluations/"+str(ID)+"/"
-    r = requests.get(url)
-    txt = r.text.encode("utf-8")
-    soup = BeautifulSoup(txt, "lxml")
-    issuedivs = soup.findAll("div", {"class":"issues"})
-    allratings = dict()
-    for div in issuedivs:
-        issue = div.h4.text
-        rows = div.table.find_all("tr")
-        allcols = []
-        for row in rows:
-            cols = row.find_all('td')
-            allcols.append([ele.text.strip() for ele in cols])
-        temp = [int(c[2].replace("%","")) for c in allcols if c[2].replace("%","").isdigit()]
-        avg = sum(temp)//len(temp)
-        allratings[issue]=avg
-    return allratings
 
 app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def change():
-    status = request.args.get('name', '')
-    ratings = getRatings("Jose Diaz")
+    name = request.args.get('name', '')
+    ratings = getRatings(name)
     return printd(ratings)
 
 if __name__ == '__main__':
