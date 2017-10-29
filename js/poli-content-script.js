@@ -120,9 +120,13 @@ for (i = 0; i < paragraphs.length; i++) {
         console.log(senator + " data: " + data);
       
         var tooltipHtml = "<h2>" + senator + "</h2>";
-        tooltipHtml += "<p>Employment/Affirmative Action: " + data["Employment and Affirmative Action"] + "%</p>";
-        tooltipHtml += "<p>Unemployed/Low Income: " + data["Unemployed and Low-Income"] + "%</p>";
-        tooltipHtml += "<p>Civil Liberties/Civil Rights: " + data["Civil Liberties and Civil Rights"] + "%</p>";
+        tooltipHtml += "<p class=\"poli-bar\">Employment/Affirmative Action: " + data["Employment and Affirmative Action"][0] + "%</p>";
+        tooltipHtml += "<p class=\"poli-bar\">Unemployed/Low Income: " + data["Unemployed and Low-Income"][0] + "%</p>";
+        tooltipHtml += "<p class=\"poli-bar\">Civil Liberties/Civil Rights: " + data["Civil Liberties and Civil Rights"][0] + "%</p>";
+        for (k = 0; k < data.civil.length; k++) {
+          tooltipHtml += "<p class=\"poli-info\">" + data.civil[k] + "</p>";
+        }
+        
         // "Fiscally Conservative", "Socially Conservative", "Socially Liberal", "Fiscally Liberal"
         
         var div = document.createElement("div");
