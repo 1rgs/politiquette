@@ -123,8 +123,11 @@ for (i = 0; i < paragraphs.length; i++) {
         tooltipHtml += "<p class=\"poli-bar\">Employment/Affirmative Action: " + data["Employment and Affirmative Action"][0] + "%</p>";
         tooltipHtml += "<p class=\"poli-bar\">Unemployed/Low Income: " + data["Unemployed and Low-Income"][0] + "%</p>";
         tooltipHtml += "<p class=\"poli-bar\">Civil Liberties/Civil Rights: " + data["Civil Liberties and Civil Rights"][0] + "%</p>";
-        for (k = 0; k < data.civil.length; k++) {
-          tooltipHtml += "<p class=\"poli-info\">" + data.civil[k] + "</p>";
+        
+        if (data.civil) {
+          for (k = 0; k < data.civil.length; k++) {
+            tooltipHtml += "<p class=\"poli-info\">" + data.civil[k] + "</p>";
+          }
         }
         
         // "Fiscally Conservative", "Socially Conservative", "Socially Liberal", "Fiscally Liberal"
