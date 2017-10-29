@@ -5,7 +5,7 @@
   position: fixed;
   right:10px;
   top:10px;
-  z-index: 999999;
+  z-index: 9999999999;
   display:none;
   color:white;
   max-width: 400px;
@@ -30,7 +30,7 @@
   margin: 0px 0px 12px 0px !important;
 }
 
-.poli-tooltip .poli-bar::after, .poli-tooltip .poli-bar::before {
+.poli-percent-bar, .poli-tooltip .poli-bar::before {
   content: '';
   position: absolute;
   left: 0;
@@ -58,7 +58,7 @@
   color: #cc6b6b;
 }
 
-.poli-tooltip .poli-bar::after {
+.poli-percent-bar {
   background-color:#C09F80;
   z-index:-1;
   width:65%;

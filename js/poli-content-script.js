@@ -159,7 +159,7 @@ for (i = 0; i < paragraphs.length; i++) {
 
 function addPoliBar(data, text) {
   if (data[text]) {
-    return "<p class=\"poli-bar\">" + text + ": " + data[text][0] + "%</p>";
+    return "<p class=\"poli-bar\">" + text + ": " + data[text][0] + "%<span class=\"poli-percent-bar\" style=\"width: " + data[text][0] + "%;\"></span></p>";
   }
   return "";
   
