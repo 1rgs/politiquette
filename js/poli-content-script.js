@@ -176,3 +176,16 @@ function addPoliBar(data, text) {
   return "";
   
 }
+
+document.onmousedown = function (e) {
+  console.log("aaa");
+  if (!e.target.className.split(" ")[0].startsWith("poli-") || e.target.className.split(" ")[0] == "poli-hover") {
+    console.log("nice");
+    var tooltips = document.getElementsByClassName("poli-tooltip");
+    for (i = 0; i < tooltips.length; i++) {
+      tooltips[i].classList.remove("poli-tooltip-visible");
+    }
+  }
+      
+      // or other hide
+}
