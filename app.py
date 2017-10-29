@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 import requests,json
 
 
@@ -40,7 +40,7 @@ def getRatings(name):
 app = Flask(__name__)
 
 
-json_data=open("senatorsdata.json").read()
+json_data=open("senatorsdata2.json").read()
 
 senatorsdata = json.loads(json_data)
 
@@ -50,8 +50,11 @@ senatorsdata = json.loads(json_data)
 @app.route('/', methods = ['GET'])
 def change():
     name = request.args.get('name', '')
+
     if name in senatorsdata:
-        return json.dumps(senatorsdata[name])
+        temp = {name:senatorsdata[name]}
+        return Response(json.dumps(temp), mimetype='application/json')
+        # return str(json.dumps(senatorsdata[name]))
     return "not found"
 
 if __name__ == '__main__':
