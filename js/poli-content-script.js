@@ -145,7 +145,9 @@ for (i = 0; i < paragraphs.length; i++) {
         var senatorHtml = document.querySelectorAll("[senator=\"" + senator + "\"]")[0];
         senatorHtml.appendChild(div);
         senatorHtml.removeAttribute("senator");
-
+        senatorHtml.addEventListener("click", function() {
+          this.children[0].classList.add('poli-tooltip-visible');
+        });
         
         console.log(data);
       });
@@ -159,7 +161,17 @@ for (i = 0; i < paragraphs.length; i++) {
 
 function addPoliBar(data, text) {
   if (data[text]) {
-    return "<p class=\"poli-bar\">" + text + ": " + data[text][0] + "%<span class=\"poli-percent-bar\" style=\"width: " + data[text][0] + "%;\"></span></p>";
+    var percentage = Math.round(10 * parseInt(data[text][1])/parseInt(data[text][2]))/10;
+    if (isNaN(percentage)) {
+      percentage = 0;
+    }
+
+    console.log("text1: " + data[text][1]);
+    console.log("text2: " + data[text][2]);
+
+    var bar = "<span class=\"poli-percent-bar\" style=\"width: " + data[text][0] + "%;\"></span>";
+    var voting = "<span class=\"poli-voting\">Approval: " + percentage + "% <span class=\"poli-up\">U</span><span class=\"poli-down\">D</span></span> ";
+    return "<p class=\"poli-bar\">" + text + " policy alignment: " + data[text][0] + "%" + voting + bar + "</p>";
   }
   return "";
   
