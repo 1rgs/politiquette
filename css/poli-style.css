@@ -1,0 +1,38 @@
+.poli-tooltip {
+  padding:10px;
+  border-radius: 2px;
+  background-color:black;
+  opacity: 0.9;
+  position: fixed;
+  right:10px;
+  top:10px;
+  max-width: 300px;
+  z-index: 999999;
+  display:none;
+  color:white;
+}
+
+.poli-tooltip p {
+  font-family:sans-serif !important;
+  padding:0px !important;
+  margin: 0px 0px 2px 0px !important;
+  font-size:16px !important;
+}
+
+.poli-tooltip h2 {
+  font-family:sans-serif !important;
+  font-size:30px !important;
+  margin: 6px 0px 8px 0px !important;
+  padding:0;
+}
+
+.poli-hover {
+  padding:2px 5px;
+  background-color:yellow;
+  color:black;
+  cursor:pointer;
+}
+
+.poli-hover:hover .poli-tooltip {
+  display:inline;
+}
