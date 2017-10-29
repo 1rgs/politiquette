@@ -81,4 +81,29 @@
 
 .poli-hover:hover .poli-tooltip {
   display:inline;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: fadeInRight;
+}
+
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(15px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
 }
