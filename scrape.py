@@ -39,11 +39,20 @@ def getRatings(name):
 
 app = Flask(__name__)
 
+
+json_data=open("senatorsdata.json").read()
+
+senatorsdata = json.loads(json_data)
+
+
+# print(senatorsdata.keys())
+
 @app.route('/', methods = ['GET'])
 def change():
     name = request.args.get('name', '')
-    ratings = getRatings(name)
-    return printd(ratings)
+    if name in senatorsdata:
+        return json.dumps(senatorsdata["Al Franken"])
+    return "not found"
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
