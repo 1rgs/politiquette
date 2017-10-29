@@ -116,3 +116,18 @@
 .fadeInRight {
   animation-name: fadeInRight;
 }
+
+.poli-up {
+  padding:3px;
+  border-radius:5px;
+  background-color:orange;
+  cursor: pointer;
+  margin-right:3px;
+}
+
+.poli-down {
+  padding:3px;
+  border-radius:5px;
+  background-color:purple;
+  cursor: pointer;
+}
