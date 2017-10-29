@@ -7,7 +7,7 @@ senators = ['Richard Shelby', 'Luther Strange', 'Lisa Murkowski', 'Dan Sullivan'
 
 def get_civil(name):
 	#civil_rights_views = {senator: [] for senator in senators}
-	#for senator in senators: 
+	#for senator in senators:
 	sen = name.split(' ')
 	url = 'http://www.ontheissues.org/Senate/' + sen[0] + '_' + sen[1] + '.htm'
 	r = requests.get(url)
@@ -17,12 +17,26 @@ def get_civil(name):
 
 
 	aclu = [x.text.strip() for x in list if "ACLU" in x.text.strip()]
-	hrc = [x.text.strip() for x in list if "HRC" in x.text.strip()] 
+	hrc = [x.text.strip() for x in list if "HRC" in x.text.strip()]
 	naacp = [x.text.strip() for x in list if "NAACP" in x.text.strip()]
 	all = aclu + hrc + naacp
+	return all
 
-	return '. '.join(all) 
 
+json_data=open("senatorsdata.json").read()
+
+senatorsdata = json.loads(json_data)
+
+for name in senatorsdata:
+	temp = get_civil(name)
+	print(temp)
+	if temp!=[]:
+		senatorsdata[name]["civil"] = temp
+def printd(d):
+    return(json.dumps(d, sort_keys=True, indent=4, separators=(',', ': ')))
+
+f = open("senatorsdata2.json","w")
+f.write(printd(senatorsdata))
+f.close()
 	# if __name__ == '__main__':
 	# 	print (civil_rights_views)
-
