@@ -21,6 +21,7 @@ def getRatings(name):
         r = requests.get(url)
         txt = r.text.encode("utf-8")
         soup = BeautifulSoup(txt, "lxml")
+
         issuedivs = soup.findAll("div", {"class":"issues"})
         allratings = dict()
         for div in issuedivs:
@@ -33,14 +34,23 @@ def getRatings(name):
             temp = [int(c[2].replace("%","")) for c in allcols if c[2].replace("%","").isdigit()]
             avg = sum(temp)//len(temp)
             allratings[issue]=avg
+
+        title = soup.find(itemprop="jobTitle").get_text().strip()
+        allratings[state] = title.split(', ')[0]
+        allratings[party] = title.split(', ')[1]
+
         return allratings
     except:
         return {"not found":"true"}
 
+
+
+
+
 app = Flask(__name__)
 
 
-json_data=open("senatorsdata2.json").read()
+json_data=open("senatorsdata4.json").read()
 
 senatorsdata = json.loads(json_data)
 
@@ -56,6 +66,25 @@ def change():
         return Response(json.dumps(temp), mimetype='application/json')
         # return str(json.dumps(senatorsdata[name]))
     return "not found"
+
+@app.route('/votes', methods = ['GET'])
+def votes():
+    try:
+        senator = str(request.args.get('name'))
+        issue = str(request.args.get('issue'))
+        vote = str(request.args.get('vote'))
+
+        if senator in senatorsdata:
+            if issue in senatorsdata[senator] and issue!="state" and issue!="party" and issue!="civil":
+                if vote=="1":
+                    senatorsdata[senator][issue][1] =  senatorsdata[senator][issue][1]+1
+                    return (senator+issue+"updated to"+str(senatorsdata[senator][issue][1]+1))
+                elif vote=="-1":
+                    senatorsdata[senator][issue][2] =  senatorsdata[senator][issue][2]-1
+                    return (senator+issue+"updated to"+str(senatorsdata[senator][issue][2]-1))
+        return "shamikh is handling the buisness side" # error
+    except:
+        return "shamikh is handling the buisness side" # error
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
