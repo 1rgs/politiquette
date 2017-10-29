@@ -45,6 +45,19 @@
   width: 100%;
 }
 
+.poli-party-state {
+  margin:0px 15px;
+  color:#C09F80;
+}
+
+.poli-blue {
+  color:#6b9ecc;
+}
+
+.poli-red { 
+  color: #cc6b6b;
+}
+
 .poli-tooltip .poli-bar::after {
   background-color:#C09F80;
   z-index:-1;

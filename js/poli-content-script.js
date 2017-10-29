@@ -119,7 +119,14 @@ for (i = 0; i < paragraphs.length; i++) {
         var data = response[senator];
         console.log(senator + " data: " + data);
       
-        var tooltipHtml = "<h2>" + senator + "</h2>";
+        var party = data.party.charAt(0);
+        var partyColor;
+        if (party == "D") {
+          partyColor = "poli-blue";
+        } else {
+          partyColor = "poli-red";
+        }
+        var tooltipHtml = "<h2>" + senator + "<span class=\"poli-party-state " + partyColor + "\">" + party +" | " + data.state.slice(13, 15) +"</span></h2>";
         tooltipHtml += addPoliBar(data, "Employment and Affirmative Action");
         tooltipHtml += addPoliBar(data, "Unemployed and Low-Income");
         tooltipHtml += addPoliBar(data, "Civil Liberties and Civil Rights");
