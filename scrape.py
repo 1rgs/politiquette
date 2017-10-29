@@ -14,7 +14,9 @@ def printd(d):
 
 def getRatings(name):
     try:
+
         ID = getID(name)
+        print(name,ID)
         url = "https://votesmart.org/candidate/evaluations/"+str(ID)+"/"
         r = requests.get(url)
         txt = r.text.encode("utf-8")
