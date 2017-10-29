@@ -80,8 +80,13 @@ def votes():
                     senatorsdata[senator][issue][1] =  senatorsdata[senator][issue][1]+1
                     return (senator+issue+"updated to"+str(senatorsdata[senator][issue][1]+1))
                 elif vote=="-1":
-                    senatorsdata[senator][issue][2] =  senatorsdata[senator][issue][2]-1
-                    return (senator+issue+"updated to"+str(senatorsdata[senator][issue][2]-1))
+                    senatorsdata[senator][issue][2] =  senatorsdata[senator][issue][2]+1
+                    return (senator+issue+"updated to"+str(senatorsdata[senator][issue][2]+1))
+
+        f = open("senatorsdata4.json","w")
+        f.write(printd(senatorsdata))
+        f.close()
+
         return "shamikh is handling the buisness side" # error
     except:
         return "shamikh is handling the buisness side" # error
