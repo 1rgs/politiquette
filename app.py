@@ -51,7 +51,7 @@ senatorsdata = json.loads(json_data)
 def change():
     name = request.args.get('name', '')
     if name in senatorsdata:
-        return json.dumps(senatorsdata["Al Franken"])
+        return json.dumps(senatorsdata[name])
     return "not found"
 
 if __name__ == '__main__':
