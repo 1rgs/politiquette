@@ -120,9 +120,9 @@ for (i = 0; i < paragraphs.length; i++) {
         console.log(senator + " data: " + data);
       
         var tooltipHtml = "<h2>" + senator + "</h2>";
-        tooltipHtml += "<p class=\"poli-bar\">Employment/Affirmative Action: " + data["Employment and Affirmative Action"][0] + "%</p>";
-        tooltipHtml += "<p class=\"poli-bar\">Unemployed/Low Income: " + data["Unemployed and Low-Income"][0] + "%</p>";
-        tooltipHtml += "<p class=\"poli-bar\">Civil Liberties/Civil Rights: " + data["Civil Liberties and Civil Rights"][0] + "%</p>";
+        tooltipHtml += addPoliBar(data, "Employment and Affirmative Action");
+        tooltipHtml += addPoliBar(data, "Unemployed and Low-Income");
+        tooltipHtml += addPoliBar(data, "Civil Liberties and Civil Rights");
         
         if (data.civil) {
           for (k = 0; k < data.civil.length; k++) {
@@ -148,4 +148,12 @@ for (i = 0; i < paragraphs.length; i++) {
     }
   }
 
+}
+
+function addPoliBar(data, text) {
+  if (data[text]) {
+    return "<p class=\"poli-bar\">" + text + ": " + data[text][0] + "%</p>";
+  }
+  return "";
+  
 }
