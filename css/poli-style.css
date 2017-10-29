@@ -9,6 +9,7 @@
   max-width: 300px;
   z-index: 999999;
   display:none;
+  color:white;
 }
 
 .poli-tooltip p {
@@ -27,8 +28,8 @@
 
 .poli-hover {
   padding:2px 5px;
-  background-color:black;
-  color:white;
+  background-color:yellow;
+  color:black;
   cursor:pointer;
 }
 
