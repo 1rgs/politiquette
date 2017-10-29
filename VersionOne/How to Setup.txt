@@ -1,0 +1,23 @@
+- start testrpc in one cmd
+- Title both command windows using title <window_title>
+- Navigate second window (node) to directory containing .sol
+
+Type following commands:
+- cd/Documents/My Projects/Politiquette/VersionOne
+- node
+- Web3 = require('web3')
+- web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+- (optional, to check accounts) web3.eth.accounts
+- code = fs.readFileSync('Voting.sol').toString()
+- solc = require('solc')
+- compiledCode = solc.compile(code)
+- abiDefinition = JSON.parse(compiledCode.contracts[':Voting'].interface)
+- VotingContract = web3.eth.contract(abiDefinition)
+- byteCode = compiledCode.contracts[':Voting'].bytecode
+- deployedContract = VotingContract.new(['Abortion - 93.0%','Environment - 40.3%','Gun Control - 14.9%','Clean Energy - 78.9%','Taxes - 14.3%','Fiscal Policy - 97.1%'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+- deployedContract.address
+- contractInstance = VotingContract.at(deployedContract.address)
+- Change address in index.js to contractInstance.address
+
+Miscellaneous Notes:
+- C:\"Program Files"\Geth\Geth.exe
