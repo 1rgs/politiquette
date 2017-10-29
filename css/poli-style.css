@@ -1,0 +1,19 @@
+.poli-tooltip {
+  padding:5px;
+  border-radius: 2px;
+  background-color:black;
+  opacity: 0.9;
+  position: fixed;
+  right:10px;
+  top:10px;
+  max-width: 300px;
+  z-index: 999999;
+  display:none;
+}
+
+.poli-hover {
+  padding:2px 5px;
+  background-color:black;
+  color:white;
+  cursor:pointer;
+}
