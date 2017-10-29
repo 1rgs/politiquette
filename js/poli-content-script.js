@@ -177,7 +177,7 @@ function addPoliBar(data, text, senator) {
 
     var bar = "<span class=\"poli-percent-bar\" style=\"width: " + data[text][0] + "%;\"></span>";
     var url = "http://politiquette.herokuapp.com/votes?name=" + senator.replace(" ", "%20").replace("\"","") +"&issue=" + text.split(" ").join("%20") +"&vote="
-    var voting = "<span class=\"poli-voting\">Approval: " + percentage + "% <span class=\"poli-up\" poli-url=\"" + url + "1\">U</span><span class=\"poli-down\" poli-url=\"" + url + "-1\";>D</span></span> ";
+    var voting = "<span class=\"poli-voting\">Upvotes: " + percentage + "% <span class=\"poli-up\" poli-url=\"" + url + "1\"><strong>U<strong></span><span class=\"poli-down\" poli-url=\"" + url + "-1\";><strong>D<strong></span></span> ";
     // var voting = "";
     return "<p class=\"poli-bar\">" + text + " policy alignment: " + data[text][0] + "%" + voting + bar + "</p>";
   }
