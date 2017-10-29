@@ -169,7 +169,7 @@ function addPoliBar(data, text, senator) {
       percentage = 100;
     } else {
 
-      percentage = Math.round(10 * parseInt(data[text][1])/(parseInt(data[text][2]) + parseInt(data[text][1])))/10;
+      percentage = Math.round(10 * parseInt(data[text][1])/(parseInt(data[text][2]) + parseInt(data[text][1])))*10;
     }
 
     console.log(senator + " text1: " + data[text][1]);
